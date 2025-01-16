@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - A-Z Household Services</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-dark text-white sidebar">
+            <h2 class="text-center my-4">Hey,{{name}} <br><br>You are an accomplished:<br><br>{{service_name}}<br>service provider.</h2>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="/professional/{{id}}/{{name}}" class="nav-link text-white">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/professional/{{id}}/{{name}}/search" class="nav-link text-white">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/professional/{{id}}/{{name}}/summary" class="nav-link text-white">Summary</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/login" class="nav-link text-white">Logout</a>
+                </li>
+            </ul>
+        </div>
+        <!-- Main Content -->
+        <div class="main-content p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1>Service Requests Summary</h1>
+            </div>
+            <div class="chart-container">
+                <img src="{{ url_for('static',filename= 'professional_summary.png') }}" alt="Summary Chart">
+                <img src="{{ url_for('static',filename= 'professional_summary1.png') }}" alt="Summary Chart">
+            </div>
+        </div>
+</body>
+</html>

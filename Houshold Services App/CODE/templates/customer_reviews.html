@@ -1,0 +1,55 @@
+{% extends "layout1.html"%}
+    {%block body%}
+            <!-- Web-Page namewith customized styling -->
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 class="customer-signup">{{service_details.full_name}}, Review Us</h3>
+            </div>
+            <form method="POST" action="/customers/{{customer_id}}/{{customer_name}}/{{service_details.order_id}}/reviews">
+                <div class="form-group mb-3">
+                <label for="service_name">Service Name:</label>
+                <input type="text" id="service_name" name="service_name" value={{service_details.service_name}}>
+                </div>
+                <div class="form-group mb-3">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="15">
+Your package_id :{{service_details.package_id}},
+Your package name:
+{{package_details.package_name}},
+Your package overview: 
+{{package_details.package_discription}},
+Your package price : Rs{{package_details.package_price}} 
+                </textarea>
+                </div>
+                <div class="form-group mb-3">   
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group mb-3">
+                <label for="professional_name">Professional Name:</label>
+                <input type="text" id="professional_name" name="professional_name" value={{service_details.professional_name}}>
+                </div>
+                <div class="form-group mb-3">
+                <label for="contact_number">Contact Number:</label>
+                <input type="text" id="contact_number" name="contact_number"  value={{service_details.phone_number}}>
+                </div>
+                <div class="form-group mb-3">
+                <label for="service_rating">Service Rating:</label>
+                <select id="service_rating" name="service_rating" required>
+                    <option value="" disabled selected>Select a rating</option>
+                    <option value="1">1 - Poor</option>
+                    <option value="2">2 - Fair</option>
+                    <option value="3">3 - Good</option>
+                    <option value="4">4 - Very Good</option>
+                    <option value="5">5 - Excellent</option>
+                </select>
+                </div>
+                <div class="form-group mb-3">
+                <label for="remarks">Remarks:</label>
+                <textarea id="remarks" name="remarks" rows="4"></textarea>
+                </div>
+                <div class="button-container">
+                    <button type="submit" class="submit-btn" name="action" value="Submit">Submit</button>
+                    <button type="button" class="close-btn" onclick="window.close()">Close</button>
+                </div>
+            </form>
+    {%endblock%}

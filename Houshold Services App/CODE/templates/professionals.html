@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - A-Z Household Services</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-dark text-white sidebar">
+            <h2 class="text-center my-4">Hey,{{name}} <br><br>You are an accomplished:<br><br>{{service_name}}<br>service provider.</h2>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="/professional/{{id}}/{{name}}" class="nav-link text-white">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/professional/{{id}}/{{name}}/search" class="nav-link text-white">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/professional/{{id}}/{{name}}/summary" class="nav-link text-white">Summary</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/login" class="nav-link text-white">Logout</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="card-body">
+            <div class="card-header">
+                <h5 class="mb-0">Today's Service</h5>
+            </div>
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Customer Name</th>
+                        <th>Contact Number</th>
+                        <th>Service Name</th>
+                        <th>Package ID</th>
+                        <th>Location</th>
+                        <th>Pincode</th>
+                        <th>Request Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%if service_details%}
+                    {% for service in service_details %}
+                    {% if service_name==service.service_name %}
+                    <tr>
+                        <td>{{service.customer_id}}</td>
+                        <td>{{service.customer_name}}</td>
+                        <td>{{service.phone_number}}</td>
+                        <td>{{service.service_name}}</td>
+                        <td>{{service.pacakage_id}}</td>
+                        <td>{{service.address}}</td>
+                        <td>{{service.pin_code}}</td>
+                        <td>{{service.request_date}}</td>
+                        <td>
+                            <form action="{{url_for('professional',id=id,name=name)}}" method="POST">
+                                <button class="btn btn-success btn-sm" name="action" 
+                                value='{{service.customer_name}},{{service.service_name}},{{service.pacakage_id}}' >Accept</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {%endif%}
+                    {%endfor%}
+                    {%endif%}
+                </tbody>
+            </table>
+            <div class="card-body">
+                <div class="card-header">
+                    <h5 class="mb-0">Closed Services</h5>
+                </div>
+                <table class="table table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Customer Name</th>
+                            <th>Contact Number</th>
+                            <th>Location</th>
+                            <th>Pincode</th>
+                            <th>Date</th>
+                            <th>Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if closed_services%}
+                        {% for service in closed_services %}
+                        {% if service.professional_name==name %}
+                        <tr>
+                            <td>{{service.order_id}}</td>
+                            <td>{{service.customer_name}}</td>
+                            <td>{{service.customer_phone_number}}</td>
+                            <td>{{service.location}}</td>
+                            <td>{{service.pincode}}</td>
+                            <td>{{service.service_date}}</td>
+                            <td>{{service.rating}}</td>
+                        </tr>
+                        {%endif%}
+                        {%endfor%}
+                        {%endif%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

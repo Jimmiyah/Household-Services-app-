@@ -1,0 +1,34 @@
+{% extends "layout2.html"%}
+    {%block body%}
+            <!-- Data Table Example (Services) -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Services Requested Overview</h5>
+                </div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Order_ID</th>
+                                    <th>Service Name</th>
+                                    <th>Assigned professional</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {%if service_request%}
+                                {% for service in service_request%}
+                                <tr>
+                                    <td>{{service.order_id}}</td>
+                                    <td>{{service.service_name}}</td>
+                                    <td>{{service.professional_name}}</td>
+                                    <td>
+                                        {{service.action}}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                {%endif%}
+                            </tbody>
+                        </table>
+                    </div>
+                {%endblock%}

@@ -1,0 +1,120 @@
+/* Wrapper for sidebar and main content */
+#wrapper {
+    display: flex;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background-color: #343a40;
+    padding-top: 20px;
+}
+
+.sidebar h2 {
+    font-size: 1.5rem;
+    color: #f8f9fa;
+}
+
+.sidebar .nav-link {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #495057;
+    text-decoration: none;
+}
+
+/* Main Content Styling */
+.main-content {
+    flex-grow: 1;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+.main-content h2 {
+    font-size: 2rem;
+    color: #343a40;
+}
+
+.card {
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Data Table Styling */
+.table th, .table td {
+    vertical-align: middle;
+}
+
+.table th {
+    background-color: #343a40;
+    color: white;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+}
+/* Container for service buttons */
+.service-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Individual service button styling */
+.service-button {
+    display: inline-block;
+    text-align: center;
+    color: #333;
+    text-decoration: none;
+    width: 150px;
+    transition: transform 0.3s ease;
+}
+
+.service-button img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-button span {
+    display: block;
+    margin-top: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+/* Hover effect for button */
+.service-button:hover img {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+/* Link styling */
+a {
+    color: #007bff;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+h1 {
+    text-align: center;
+    color: #333;
+}
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+img {
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}

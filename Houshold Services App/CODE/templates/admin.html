@@ -1,0 +1,124 @@
+{% extends "layout2.html"%}
+    {%block body%}
+            <!-- Data Table Example (Services) -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Services Overview</h5>
+                </div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Service Name</th>
+                                    <th>Base Price</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{services[0].ID}}</td>
+                                    <td>{{services[0].Service_Name}}</td>
+                                    <td>{{services[0].Base_Price}}</td>
+                                <td>
+                                    <button class="btn btn-success btn-sm">Edit</button>
+                                    <button class="btn btn-danger btn-sm">Delete</button>
+                                </td>
+                                </tr>
+                                <td><a href="/admin_services">View Full Services Table</a></td>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-header">
+                        <h5 class="mb-0">Professionals</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Full Name</th>
+                                    <th>Experience</th>
+                                    <th>Service Name</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{{professionals[0].professional_id}}</td>
+                                <td>{{professionals[0].full_name}}</td>
+                                <td>{{professionals[0].Experience}}</td>
+                                <td>{{professionals[0].service_provide}}</td>
+                                <td>
+                                    <button class="btn btn-success btn-sm">Approve</button>
+                                    <button class="btn btn-danger btn-sm">Reject</button>
+                                </td>
+                            </tr>
+                            <td><a href="/admin_professionals">View Full Professionals Table</a></td>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-header">
+                        <h5 class="mb-0">Customers Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Customer ID</th>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                    <th>Pincode</th>
+                                    <th>Contact No</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    {%if customers%}
+                                    <td>{{customers[0].customer_id}}</td>
+                                    <td>{{customers[0].full_name}}</td>
+                                    <td>{{customers[0].email}}</td>
+                                    <td>{{customers[0].address}}</td>
+                                    <td>{{customers[0].pincode}}</td>
+                                    <td>{{customers[0].phone_number}}</td>
+                                    <td>
+                                        <button class="btn btn-success btn-sm">Unblocked</button>
+                                    </td>
+                                    {%endif%}
+                                </tr>
+                                <td><a href="/admin_customers">View Full Customers Information Table</a></td>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-header">
+                        <h5 class="mb-0">Services Requested</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Order_ID</th>
+                                    <th>Service Name</th>
+                                    <th>Assigned professional</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    {%if service_request%}
+                                    <td>{{service_request[0].order_id}}</td>
+                                    <td>{{service_request[0].service_name}}</td>
+                                    <td>{{service_request[0].professional_name}}</td>
+                                    <td>
+                                        {{service_request[0].action}}
+                                    </td>
+                                    {%endif%}
+                                </tr>
+                                <td><a href="/admin_services_requested">View Full Services Requested Table</a></td>
+                            </tbody>
+                        </table>
+                    </div>
+
+                {%endblock%}

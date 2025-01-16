@@ -1,0 +1,15 @@
+{% extends "layout2.html"%}
+    {%block body%}
+     <!-- Main Content -->
+     <div class="main-content p-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Service Requests Summary</h1>
+        </div>
+        <div class="chart-container">
+            <img src="{{ url_for('static',filename= 'admin1.png') }}" alt="Summary Chart">
+        </div>
+        <div class="chart-container">
+            <img src="{{ url_for('static',filename= 'admin2.png') }}" alt="Summary Chart">
+        </div>
+    </div>
+    {%endblock%}

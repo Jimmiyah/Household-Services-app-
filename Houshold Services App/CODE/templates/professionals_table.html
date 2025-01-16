@@ -1,0 +1,50 @@
+{% extends "layout2.html"%}
+    {%block body%}
+            <!-- Data Table Example (Services) -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Professionals Overview</h5>
+                </div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Full Name</th>
+                                    <th>Experience</th>
+                                    <th>Service Name</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for professional in professionals%}
+                                
+                                <tr>
+                                    <td>{{professional.professional_id}}</td>
+                                    <td>
+                                        <a href="{{url_for('static',filename= professional.full_name+'.pdf')}}">
+                                            {{professional.full_name}}
+                                        </a>
+                                    </td>
+                                    <td>{{professional.Experience}}</td>
+                                    <td>{{professional.service_provide}}</td>
+                                    {% if professional.status =="Accepted" %}
+                                    <td>
+                                        <form action="{{ url_for('edit',professional_id=professional.professional_id,name=professional.full_name) }}" method="POST">
+                                        <button class="btn btn-danger btn-sm" name="action" value="delete">Delete</button>
+                                        </form>
+                                    </td>
+                                    {%else%}
+                                    <td>
+                                        <form action="{{ url_for('edit',professional_id=professional.professional_id,name=professional.full_name) }}" method="POST">
+                                        <button class="btn btn-success btn-sm" name="action" value="approve">Approve</button>
+                                        <button class="btn btn-danger btn-sm" name="action" value="reject">Reject</button>
+                                        </form>
+                                    </td>
+                                    {%endif%}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {%endblock%}

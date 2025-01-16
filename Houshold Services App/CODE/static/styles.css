@@ -1,0 +1,100 @@
+/* Background image with overlay effect */
+body {
+    background: url('/static/Banner.png') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Overlay effect */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    z-index: 1;
+}
+
+/* Overlay container with higher z-index */
+.overlay-container {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Centered form card styling */
+.form-card {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 10px;
+    background: #ffffff;
+    padding: 40px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Form control styling */
+.form-control, .form-control-file {
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+/* Company Name Heading with custom font and color */
+.company-name {
+    font-family: 'Arial', sans-serif;
+    color: #0056b3;
+    font-weight: bold;
+}
+.customer-signup{
+    font-family: 'Arial', sans-serif;
+    color: #0056b3;
+    font-weight: bold;
+}
+.ServiceProfessional-signup{
+    font-family: 'Arial', sans-serif;
+    color: #0056b3;
+    font-weight: bold;
+}
+/* Link styling */
+a {
+    color: #007bff;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.form-container button {
+    width: 48%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.form-container .submit-btn {
+    background: #4CAF50;
+    color: white;
+}
+
+.form-container .close-btn {
+    background: #f44336;
+    color: white;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}

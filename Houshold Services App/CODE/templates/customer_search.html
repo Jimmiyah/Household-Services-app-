@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - A-Z Household Services</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-dark text-white sidebar">
+            <h2 class="text-center my-4">Hey,{{customer_name}}</h2>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="/customers/{{customer_id}}/{{customer_name}}" class="nav-link text-white">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/customer_search/{{customer_id}}/{{customer_name}}" class="nav-link text-white">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/customers/{{customer_id}}/{{customer_name}}/summary" class="nav-link text-white">Summary</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/login" class="nav-link text-white">Logout</a>
+                </li>
+            </ul>
+        </div>
+        <div class="main-content p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <form action="{{url_for('customer_search',customer_id=customer_id,customer_name=customer_name)}}" method="POST">
+                    <div>
+                        <label for="service">Select Attribute</label>
+                        <select  id="service" name="service" required>
+                            <option value="service_name">Service Name</option>
+                            <option value="price">Price</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Specification</label>
+                        <input type="text" id="name" name="name" placeholder="Enter specification" required>
+                    </div>
+                    <div>
+                        <button class="btn btn-success btn-sm" name="action">Search</button>
+    
+                    </div>
+                </form>
+            </div>
+            </div>  
+        <div class="card-body">
+            <div class="card-header">
+                <h5 class="mb-0">{{customer_name}} your search results:</h5>
+            </div>
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Service Name</th>
+                        <th>Package ID</th>
+                        <th>Package Name</th>
+                        <th> Package Specification</th>
+                        <th>Package Price</th>
+                        <th>Confirm Booking</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if package%}
+                    {% for pack in package%}
+                    <tr>
+                        <td>{{pack.service_name}}</td>
+                        <td>{{pack.package_id}}</td>
+                        <td>{{pack.package_name}}</td>
+                        <td>{{pack.package_discription}}</td>
+                        <td>{{pack.package_price}}</td>
+                        <td>
+                            <form action="{{ url_for('packages',customer_id=customer_id,customer_name=customer_name,service_name=pack.service_name) }}" method="POST">
+                                <div>
+                                    <input type="text" name="date" placeholder='DD-MM-YYYY' required>
+                                </div>
+                                <button class="btn btn-success btn-sm" name="action" value={{pack.package_id}}>BOOK</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {%endif%}
+                </tbody>
+            </table>
+        </div> 
+        </div> 
+</body>
+</html>

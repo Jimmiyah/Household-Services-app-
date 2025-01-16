@@ -1,0 +1,26 @@
+{% extends "layout1.html"%}
+    {%block body%}
+            <!-- Web-Page namewith customized styling -->
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="ServiceProfessional-signup">Add a Package for {{service.Service_Name}}</h2>
+            </div>
+            <form action="/edit_services/{{service.ID}}" method="POST">
+                <!--  Service Name Field -->
+                <div class="form-group mb-3">
+                    <label>Package Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter package  name" required>
+                </div>
+                 <div class="form-group mb-3">
+                    <label for="description">Package Description</label>
+                    <textarea class="form-control" id="description" name="discription" rows="3" placeholder="Enter your discription"></textarea>
+                </div>
+                <!-- Base Price Field -->
+                <div class="form-group mb-3">
+                    <label for="price">Package Price</label>
+                    <input type="number"  step = "0.01"  class="form-control" id="price" name="price" placeholder="Enter Price" required>
+                </div>
+                
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary w-100" name="action" value="add">Add</button>
+            </form>
+    {%endblock%}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - A-Z Household Services</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-dark text-white sidebar">
+            <h2 class="text-center my-4">Hey,{{customer_name}}</h2>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="/customers/{{customer_id}}/{{customer_name}}" class="nav-link text-white">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/customer_search/{{customer_id}}/{{customer_name}}" class="nav-link text-white">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/customers/{{customer_id}}/{{customer_name}}/summary" class="nav-link text-white">Summary</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/login" class="nav-link text-white">Logout</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>What are you looking for,{{customer_name}}?</h2>
+            </div>
+            <h1>Our Services</h1>
+    <div class="service-buttons">
+        {% for service in services %}
+        <a href="/packages/{{customer_id}}/{{customer_name}}/{{service.Service_Name}}" class="service-button">
+            <img src="{{ url_for('static', filename= service.Service_Name+'.png') }}" alt="{{service.Service_Name}}">
+            <span>{{service.Service_Name}}</span>
+        </a>
+        {%endfor%}
+    </div>
+    <div class="card-header">
+        <h5 class="mb-0">Services History</h5>
+    </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Service Name</th>
+                        <th>Package Taken</th>
+                        <th>Professional Name</th>
+                        <th>Phone No</th>
+                        <th>Request Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if service_history %}
+                    {% for service in service_history%}
+                    <tr>
+                        <td>{{service.order_id}}</td>
+                        <td>{{service.service_name}}</td>
+                        <td>{{service.package_id}}</td>
+                        <td>{{service.professional_name}}</td>
+                        <td>{{service.phone_number}}</td>
+                        <td>{{service.request_date}}</td>
+                        {% if service.action=="Closing?"%}
+                        <td>
+                            <a href="/customers/{{customer_id}}/{{customer_name}}/{{service.order_id}}/reviews" >{{service.action}}
+                            </a>
+                        </td>
+                        {%else%}
+                        <td>
+                            {{service.action}}
+                        </td>
+                        {%endif%}
+                    </tr>
+                    {%endfor%}
+                    {%endif%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+

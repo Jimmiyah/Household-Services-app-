@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - A-Z Household Services</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-dark text-white sidebar">
+            <h2 class="text-center my-4">Hey,{{name}} <br><br>You are an accomplished service provider.</h2>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="/professional/{{id}}/{{name}}" class="nav-link text-white">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/professional/{{id}}/{{name}}/search" class="nav-link text-white">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/professional/{{id}}/{{name}}/summary" class="nav-link text-white">Summary</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/login" class="nav-link text-white">Logout</a>
+                </li>
+            </ul>
+        </div>
+        <div class="main-content p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <form action="/professional/{{id}}/{{name}}/search" method="POST">
+                    <div>
+                        <label for="service">Select Attribute</label>
+                        <select  id="service" name="service" required>
+                            <option value="service_name">Pincode</option>
+                            <option value="date">Request Date</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Specification</label>
+                        <input type="text" id="name" name="name" placeholder="Enter specification" required>
+                    </div>
+                    <div>
+                        <button class="btn btn-success btn-sm" name="action">Search</button>
+    
+                    </div>
+                </form>
+            </div>
+            </div>  
+        <div class="card-body">
+            <div class="card-header">
+                <h5 class="mb-0">{{name}} your search results:</h5>
+            </div>
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Customer Name</th>
+                        <th>Service Name</th>
+                        <th>Package ID</th>
+                        <th> Address</th>
+                        <th>Pincode</th>
+                        <th>Request Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if package%}
+                    {% for pack in package%}
+                    {%if service_name==pack.service_name%}
+                    <tr>
+                        <td>{{pack.customer_name}}</td>
+                        <td>{{pack.service_name}}</td>
+                        <td>{{pack.pacakage_id}}</td>
+                        <td>{{pack.address}}</td>
+                        <td>{{pack.pin_code}}</td>
+                        <td>{{pack.request_date}}</td>
+                    </tr>
+                    {%endif%}
+                    {% endfor %}
+                    {%endif%}
+                </tbody>
+            </table>
+        </div> 
+        </div> 
+</body>
+</html>
